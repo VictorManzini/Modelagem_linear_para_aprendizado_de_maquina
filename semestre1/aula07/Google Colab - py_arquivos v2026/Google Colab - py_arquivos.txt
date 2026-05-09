@@ -1,0 +1,177 @@
+#
+# passo 1
+#
+from google.colab import drive
+drive.mount('/content/drive')
+
+#
+# passo 2
+#
+
+# O comando open é usado para abrir arquivos.
+# O comando with é usado para garantir a finalização do arquivo depois de aberto de maneira segura.
+# Quando um arquivo é aberto, ele pode ser aberto para leitura ('r'), escrita ('w'),
+# anexar (acrescentar) ('a') ou ler como binário ('rb').
+# Para mais informações, acesse: https://docs.python.org/3/library/io.html
+
+with open('/content/drive/MyDrive/Colab Notebooks/texto_utf8.txt', 'r') as file:
+   print(file)               # exibe o que foi carregado na variável file ao abrir o arquivo
+   print(type(file))         # exibe o tipo de dado (estrutura) da variável file
+   linhas = file.readlines() # readlines é um método da classe _io.TextIOWrapper que lê as linhas do arquivo
+   print(linhas)             # as linhas são armazenadas em uma lista (vetor) de strings
+
+#
+# passo 3
+#
+with open('/content/drive/MyDrive/Colab Notebooks/texto_utf8.txt', 'r', encoding="utf-8") as file:
+   linhas = file.readlines()
+   for linha in linhas:  # printando as linhas
+      print(linha)
+
+#
+# passo 4
+#
+with open('/content/drive/MyDrive/Colab Notebooks/texto_ansi.txt', 'r', encoding="ISO-8859-1") as file:
+   linhas = file.readlines()
+   for linha in linhas:  # printando as linhas
+      print(linha)
+
+# Por padrão, o Python 2 usa o ASCII para encoding. Já o Python 3, por padrão, usa o Unicode (como o UTF-8).
+# Os encodings nada mais são do que uma tabela que mapeia a representação gráfica do caractere
+# na tela com uma sequência de bits (byte) que codifica aquele caractere específico.
+
+#
+# passo 5
+#
+with open('/content/drive/MyDrive/Colab Notebooks/texto_ansi.txt', 'rb') as file:
+   linhas = file.readlines()
+   for linha in linhas:  # printando as linhas
+      print(linha)
+
+#
+# passo 6
+#
+
+# Nas imagens, os encodings são chamados de codecs. Os codecs podem se referenciar tanto para imagem,
+# quanto para arquivos de áudio e vídeo digital.
+# Em geral, os codecs estão associados a extensão do arquivo, por exemplo, .png, .jpg, .ogg, .mp3, .mp4 etc.
+# Além de codificar a imagem em bytes, os codecs também servem para adicionar uma camada de inteligência
+# a essa codificação, permitindo, por exemplo, a compressão de dados.
+# https://pt.wikipedia.org/wiki/Compress%C3%A3o_de_dados
+
+with open('/content/drive/MyDrive/Colab Notebooks/lena.png', 'rb') as file:
+   print(file)
+   print(type(file))
+   print(file.read())
+
+#
+# passo 7
+#
+from IPython.display import display  # para mostrar imagens no Jupyter inline
+from PIL import Image                # para carregar imagens no Python
+
+imagem = Image.open('/content/drive/MyDrive/Colab Notebooks/lena.png')  # carregando imagem usando o PIL
+print(type(imagem))  # o objeto 'imagem' criado pela classe Image do PIL foi identificado como .png
+print(imagem)        # ao exibir o objeto já vemos que a imagem tem 512x512 pixels é do tipo RBG
+                     # além disso, perceba que sabemos qual é a posição da memória RAM onde o objeto está instanciado
+imagem.show()        # esse comando é nativo do PIL e não abre a imagem inline no Jupyter
+
+#
+# passo 8
+#
+from IPython.display import display  # para mostrar imagens no Jupyter inline
+from PIL import Image                # para carregar imagens no Python
+
+imagem = Image.open('/content/drive/MyDrive/Colab Notebooks/lena.png')  # carregando imagem usando o PIL
+print(type(imagem))  # o objeto 'imagem' criado pela classe Image do PIL foi identificado como .png
+print(imagem)        # ao exibir o objeto já vemos que a imagem tem 512x512 pixels é do tipo RBG
+                     # além disso, perceba que sabemos qual é a posição da memória RAM onde o objeto está instanciado
+display(imagem)      # agora, exibindo a imagem inline usando o IPython
+                     # o objeto imagem do PIL tem um atributo size em pixels
+width, height = imagem.size
+print(width, height)
+imagem.filename      # o objeto também tem um atributo nome (caminho) do arquivo da imagem carregada
+
+#
+# passo 9
+#
+from IPython.display import display  # para mostrar imagens no Jupyter inline
+from PIL import Image                # para carregar imagens no Python
+
+imagem = Image.open('/content/drive/MyDrive/Colab Notebooks/lena.png')  # carregando imagem usando o PIL
+print(type(imagem))  # o objeto 'imagem' criado pela classe Image do PIL foi identificado como .png
+print(imagem)        # ao exibir o objeto já vemos que a imagem tem 512x512 pixels é do tipo RBG
+                     # além disso, perceba que sabemos qual é a posição da memória RAM onde o objeto está instanciado
+display(imagem)      # agora, exibindo a imagen inline usando o IPython
+                     # o objeto imagem do PIL tem um atributo size em pixels
+width, height = imagem.size
+print(width, height)
+imagem.filename      # o objeto também tem um atributo nome (caminho) do arquivo da imagem carregada
+imagem.format
+imagem.mode
+imagem.getbands()
+# obtém o valor do pixel em uma posição da imagem; (0,0) é o canto superior esquerdo
+imagem.getpixel((200,250))
+
+#
+# passo 10
+#
+from IPython.display import display  # para mostrar imagens no Jupyter inline
+from PIL import Image                # para carregar imagens no Python
+
+imagem = Image.open('/content/drive/MyDrive/Colab Notebooks/lena.png')  # carregando imagem usando o PIL
+print(type(imagem))  # o objeto 'imagem' criado pela classe Image do PIL foi identificado como .png
+print(imagem)        # ao exibir o objeto já vemos que a imagem tem 512x512 pixels é do tipo RBG
+                     # além disso, perceba que sabemos qual é a posição da memória RAM onde o objeto está instanciado
+display(imagem)      # agora, exibindo a imagen inline usando o IPython
+                     # o objeto imagem do PIL tem um atributo size em pixels
+
+# conversão para canal monocromático
+
+img_grey = imagem.convert("L")
+print(img_grey)
+display(img_grey)
+img_grey.getpixel((200,250))
+raw_imagem = imagem.tobytes()   # imagem em bytes usando o método tobytes
+print(raw_imagem)
+
+#
+# passo 11
+#
+import librosa                   # processamento de áudio
+
+# carregando o arquivo de áudio
+sinal, sr = librosa.load('/content/drive/MyDrive/Colab Notebooks/aeiou_ruido.wav', sr=44100)
+
+# o sinal é um array numpy de uma dimensão onde cada valor é um float de 32 bits
+sinal
+
+#
+# passo 12
+#
+import librosa                   # processamento de áudio
+
+# carregando o arquivo de áudio
+sinal, sr = librosa.load('/content/drive/MyDrive/Colab Notebooks/aeiou_ruido.wav', sr=44100)
+
+# o tempo total do áudio é de, aproximadamente, 4,7 segundos
+len(sinal)/sr
+
+#
+# passo 13
+#
+import librosa                   # processamento de áudio
+import librosa.display           # plot de gráficos
+import matplotlib.pyplot as plt  # plot de gráficos
+
+import IPython                   # para tocar áudio no Jupyter
+
+# carregando o arquivo de áudio
+sinal, sr = librosa.load('/content/drive/MyDrive/Colab Notebooks/aeiou_ruido.wav', sr=44100)
+
+librosa.display.waveshow(sinal, sr=sr,color='r')
+plt.grid(color='k', linestyle='-', linewidth=0.3)
+plt.xlabel('Time (s)', fontsize=14)
+plt.ylabel('Amplitude (a.u.)', fontsize=14)
+
+IPython.display.Audio('/content/drive/MyDrive/Colab Notebooks/aeiou_ruido.wav')

@@ -1,0 +1,214 @@
+#
+# passo 1
+#
+x = [41, 37, 31, 29, 23, 19, 17, 13, 13, 11, 11, 11, 7, 7, 7, 5, 5, 3, 2]
+
+def media_aritmetica(x):
+    N = len(x)
+    soma = 0
+    for xi in x:
+        soma = soma+xi
+    media = soma/N
+    return(media)
+
+
+md_art = media_aritmetica(x)
+
+print("média aritmética= ", md_art)
+print("média aritmética= ", "{:,.2f}".format(md_art))
+
+
+#
+# passo 2
+#
+x = [41, 37, 31, 29, 23, 19, 17, 13, 13, 11, 11, 11, 7, 7, 7, 5, 5, 3, 2]
+
+def media_geometrica(x):
+    N = len(x)
+    multiplicacao = 1
+    for xi in x:
+        multiplicacao = multiplicacao*xi
+    media = multiplicacao**(1/N)
+    return(media)
+
+
+md_geo = media_geometrica(x)
+
+print("média geométrica= ", md_geo)
+print("média geométrica= ", "{:,.2f}".format(md_geo))
+
+
+#
+# passo 3
+#
+x = [41, 37, 31, 29, 23, 19, 17, 13, 13, 11, 11, 11, 7, 7, 7, 5, 5, 3, 2]
+
+def media_harmonica(x):
+    N = len(x)
+    soma = 0
+    for xi in x:
+        soma = soma+(1/xi)
+    media = N/soma
+    return(media)
+
+
+md_har = media_harmonica(x)
+
+print("média harmônica= ", md_har)
+print("média harmônica= ", "{:,.2f}".format(md_har))
+
+
+#
+# passo 4
+#
+x = [41, 37, 31, 29, 23, 19, 17, 13, 13, 11, 11, 11, 7, 7, 7, 5, 5, 3, 2]
+
+def media_aritmetica(x):
+    N = len(x)
+    soma = 0
+    for xi in x:
+        soma = soma+xi
+    media = soma/N
+    return(media)
+
+def media_geometrica(x):
+    N = len(x)
+    multiplicacao = 1
+    for xi in x:
+        multiplicacao = multiplicacao*xi
+    media = multiplicacao**(1/N)
+    return(media)
+
+def media_harmonica(x):
+    N = len(x)
+    soma = 0
+    for xi in x:
+        soma = soma+(1/xi)
+    media = N/soma
+    return(media)
+
+
+md_art = media_aritmetica(x)
+md_geo = media_geometrica(x)
+md_har = media_harmonica(x)
+
+print("média aritmética=\t", "{:,.3f}".format(md_art))
+print("média geométrica=\t", "{:,.3f}".format(md_geo))
+print("média harmônica =\t ", "{:,.3f}".format(md_har))
+
+
+#
+# passo 5
+#
+x = [41, 37, 31, 29, 23, 19, 17, 13, 13, 11, 11, 11, 7, 7, 7, 5, 5, 3, 2]
+w = [ 2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 10,  9, 8, 7, 6, 5, 4, 3, 2]
+
+
+def media_ponderada(x,w):
+    if len(x) == len(w):
+        soma_xw = 0
+        soma_w = 0
+        for i in range(0,len(x)):
+            soma_xw = soma_xw + x[i]*w[i]
+            soma_w = soma_w + w[i]  
+        media=soma_xw/soma_w
+    else:
+        print("Os vetores não tem o mesmo tamanho!")
+        media = 0
+    
+    return(media)
+
+
+md_pnd = media_ponderada(x,w)
+
+print("média ponderada= ", "{:,.2f}".format(md_pnd))
+
+
+#
+# passo 6
+#
+x = [41, 37, 31, 29, 23, 19, 17, 13, 13, 11, 11, 11, 7, 7, 7, 5, 5, 3, 2]
+
+def mediana(x):
+    x.sort()  # Para ordenar
+    N = len(x)
+    # N é par?
+    if N % 2 == 0: # Operacao resto para descobrir se N é par (se o resto é zero ao dividir por 2, entao é par)
+        # sim
+        a = int(N/2-1)
+        b = int(N/2)
+        print('posições do vetor consideradas', a, b)
+        mediana = (x[a]+x[b])/2 
+    else: # não, N é ímpar
+        a = int(N/2)
+        print('posição do vetor considerada', a)
+        mediana = x[a]
+    return(mediana)
+
+
+def moda(x):
+    temp = 2  # Uma variavel temporaria para armazenar a maior frequencia que um valor aparece
+    moda=[]   # Vetor para armazenar diferentes valores possiveis para moda
+    for xi in x: # Vamos percorrer todo o vetor x
+        frequencia = x.count(xi)  # Conta quantas vezes um determinado valor xi aparece no vetor x
+        if frequencia >= temp:
+            if frequencia > temp:
+                moda = []
+            temp = frequencia
+            if xi not in moda:
+                moda.append(xi)          
+    return(moda)
+
+
+print("mediana=", mediana(x))
+print("moda=\t", moda(x))
+
+
+#
+# passo 7
+#
+x = [41, 37, 31, 29, 23, 19, 17, 13, 13, 11, 11, 11, 7, 7, 7, 5, 5, 3, 2]
+
+def media_aritmetica(x):
+    N = len(x)
+    soma = 0
+    for xi in x:
+        soma = soma+xi
+    media = soma/N
+    return(media)
+
+
+def variancia_amostral(x):
+    media = media_aritmetica(x)
+    N = len(x)
+    soma = 0
+    for xi in x:
+        soma = soma+(xi-media)**2
+    variancia = soma/(N-1)
+    return(variancia)
+
+
+def variancia_populacional(x):
+    media = media_aritmetica(x)
+    N = len(x)
+    soma=0
+    for xi in x:
+        soma = soma+(xi-media)**2
+    variancia = soma/N
+    return(variancia)
+
+
+def desvio_padrao_amostral(x):
+    desvio_padrao = variancia_amostral(x)**(1/2) # Tirar raiz quadrada é a mesma coisa do que elevar a meio
+    return(desvio_padrao)
+
+
+def desvio_padrao_populacional(x):
+    desvio_padrao = variancia_populacional(x)**(1/2) # Tirar raiz quadrada é a mesma coisa do que elevar a meio
+    return(desvio_padrao)
+
+
+print("variância amostral:\t\t", "{:,.2f}".format(variancia_amostral(x)))
+print("variância populacional:\t\t", "{:,.2f}".format(variancia_populacional(x)))
+print("desvio padrão amostral:\t\t ", "{:,.2f}".format(desvio_padrao_amostral(x)))
+print("desvio padrão populacional:\t ", "{:,.2f}".format(desvio_padrao_populacional(x)))

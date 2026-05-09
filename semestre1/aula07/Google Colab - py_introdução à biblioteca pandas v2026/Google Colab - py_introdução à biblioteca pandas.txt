@@ -1,0 +1,141 @@
+#
+# passo 1
+#
+import pandas as pd
+
+dados = pd.read_csv('sample_data/gaf_esp.csv', sep=';')
+
+dados.head()
+
+#dados.head(11)
+
+#dados['Espécie']
+
+#list(dados['Espécie'])
+
+#list(dados['Espécie']).count('Gafanhoto')
+
+#list(dados['Espécie']).count('Esperança')
+
+
+#
+# passo 2
+#
+import pandas as pd
+import statistics
+
+dados = pd.read_csv('sample_data/gaf_esp.csv', sep=';')
+
+media_cab = statistics.mean(dados['Comprimento do Abdômen']) # Média do Comp. Abdômen
+media_can = statistics.mean(dados['Comprimento das Antenas']) # Média do Comp. Antena
+std_cab = statistics.stdev(dados['Comprimento do Abdômen']) # Desvio Padrão Amostral do Comp. Abdômen
+std_can = statistics.stdev(dados['Comprimento das Antenas']) # Desvio Padrão Amostral do Com. Antena
+
+print('Média Comp. Abdômen: ', media_cab)
+print('Média Comp. Antena: ', media_can)
+print('Desvio Padrão Amostral do Comp. Abdômen: ', std_cab)
+print('Desvio Padrão Amostral do Comp. Antena: ', std_can)
+
+
+#
+# passo 3
+#
+import pandas as pd
+import statistics
+
+dados = pd.read_csv('sample_data/gaf_esp.csv', sep=';')
+
+dados_gaf = dados[dados['Espécie']=='Gafanhoto'] # Aqui estamos criando um dataframe só com gafanhotos
+
+dados_esp = dados[dados['Espécie']=='Esperança'] # E aqui um dataframe só com esperanças
+
+media_cab_gaf = statistics.mean(dados_gaf['Comprimento do Abdômen']) # Média do Comp. Abdômen
+media_can_gaf = statistics.mean(dados_gaf['Comprimento das Antenas']) # Média do Comp. Antena
+std_cab_gaf = statistics.stdev(dados_gaf['Comprimento do Abdômen']) # Desvio Padrão Amostral do Comp. Abdômen
+std_can_gaf = statistics.stdev(dados_gaf['Comprimento das Antenas']) # Desvio Padrão Amostra do Com. Antena
+
+print('\nGafanhoto:')
+print('Média Comp. Abdômen: ', media_cab_gaf)
+print('Média Comp. Antena: ', media_can_gaf)
+print('Desvio Padrão Amostral do Comp. Abdômen: ', std_cab_gaf)
+print('Desvio Padrão Amostral do Comp. Antena: ', std_can_gaf)
+
+media_cab_esp = statistics.mean(dados_esp['Comprimento do Abdômen']) # Média do Comp. Abdômen
+media_can_esp = statistics.mean(dados_esp['Comprimento das Antenas']) # Média do Comp. Antena
+std_cab_esp = statistics.stdev(dados_esp['Comprimento do Abdômen']) # Desvio Padrão Amostral do Comp. Abdômen
+std_can_esp = statistics.stdev(dados_esp['Comprimento das Antenas']) # Desvio Padrão Amostra do Com. Antena
+
+print('\nEsperança:')
+print('Média Comp. Abdômen: ', media_cab_esp)
+print('Média Comp. Antena: ', media_can_esp)
+print('Desvio Padrão Amostral do Comp. Abdômen: ', std_cab_esp)
+print('Desvio Padrão Amostral do Comp. Antena: ', std_can_esp)
+
+
+#
+# passo 4
+#
+import pandas as pd
+import statistics
+
+dados = pd.read_csv('sample_data/gaf_esp.csv', sep=';')
+
+dados_gaf = dados[dados['Espécie']=='Gafanhoto'] # Aqui estamos criando um dataframe só com gafanhotos
+
+dados_esp = dados[dados['Espécie']=='Esperança'] # E aqui um dataframe só com esperanças
+
+media_cab_gaf = statistics.mean(dados_gaf['Comprimento do Abdômen']) # Média do Comp. Abdômen
+media_can_gaf = statistics.mean(dados_gaf['Comprimento das Antenas']) # Média do Comp. Antena
+std_cab_gaf = statistics.stdev(dados_gaf['Comprimento do Abdômen']) # Desvio Padrão Amostral do Comp. Abdômen
+std_can_gaf = statistics.stdev(dados_gaf['Comprimento das Antenas']) # Desvio Padrão Amostra do Com. Antena
+
+print('\nGafanhoto:')
+print('Média Comp. Abdômen: ', "{:,.2f}".format(media_cab_gaf))
+print('Média Comp. Antena: ', "{:,.2f}".format(media_can_gaf))
+print('Desvio Padrão Amostral do Comp. Abdômen: ', "{:,.2f}".format(std_cab_gaf))
+print('Desvio Padrão Amostral do Comp. Antena: ', "{:,.2f}".format(std_can_gaf))
+
+media_cab_esp = statistics.mean(dados_esp['Comprimento do Abdômen']) # Média do Comp. Abdômen
+media_can_esp = statistics.mean(dados_esp['Comprimento das Antenas']) # Média do Comp. Antena
+std_cab_esp = statistics.stdev(dados_esp['Comprimento do Abdômen']) # Desvio Padrão Amostral do Comp. Abdômen
+std_can_esp = statistics.stdev(dados_esp['Comprimento das Antenas']) # Desvio Padrão Amostra do Com. Antena
+
+print('\nEsperança:')
+print('Média Comp. Abdômen: ', "{:,.2f}".format(media_cab_esp))
+print('Média Comp. Antena: ', "{:,.2f}".format(media_can_esp))
+print('Desvio Padrão Amostral do Comp. Abdômen: ', "{:,.2f}".format(std_cab_esp))
+print('Desvio Padrão Amostral do Comp. Antena: ', "{:,.2f}".format(std_can_esp))
+
+
+#
+# passo 5
+#
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+dados = pd.read_csv('sample_data/gaf_esp.csv', sep=';')
+dados_gaf = dados[dados['Espécie']=='Gafanhoto']
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+fig.suptitle('Dados dos Gafanhotos')
+
+
+sns.histplot(ax=axes[0],
+            data=dados_gaf['Comprimento do Abdômen'],
+            kde=True,
+            bins=10,
+            linewidth=0.7,
+            color='green'
+            )
+
+sns.histplot(ax=axes[1],
+            data=dados_gaf['Comprimento das Antenas'],
+            kde=True,
+            bins=10,
+            linewidth=0.7,
+            color='green'
+            )
+
+axes[0].set(xlabel='Comprimento do Abdômen', ylabel='Contagem')
+axes[1].set(xlabel='Comprimento das Antenas', ylabel='Contagem')

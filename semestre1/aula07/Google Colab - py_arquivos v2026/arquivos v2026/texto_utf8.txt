@@ -1,0 +1,3 @@
+Este é um arquivo de texto codificado em ANSI. 
+Contendo caracteres da língua portuguesa como ç e vários símbolos gráficos !@#$%¨&
+A acentuação das palavras como matemática, física, eletrônica e computação pode ser exibida incorretamente se o encoding de texto não for usado corretamente.
